@@ -1,0 +1,25 @@
+version: smartide/v0.3
+orchestrator:
+  type: allinone
+  version: 3
+workspace:
+  dev-container:
+    service-name: smartide-vmlc-vscode-tdengine-dev
+
+    ports:
+      tools-webide-vscode: 6800
+      tools-ssh: 6822
+    ide-type: vscode
+
+    volumes: 
+      git-config: true
+      ssh-key: true
+    command:
+      - code --install-extension llvm-vs-code-extensions.vscode-clangd
+      - code --install-extension franneck94.c-cpp-runner
+      - chmod +x /home/project/.ide/devtdengine.sh
+      - sh /home/project/.ide/devtdengine.sh
+
+
+  kube-deploy-files: "vscode-vmlc-k8s-deployment.yaml" 
+  docker-compose-file: "vscode-vmlc-docker-compose.yaml"
