@@ -1,4 +1,3 @@
-
 echo "------------创建数据目录、日志目录"
 if [ ! -d "./sim/" ];then
 mkdir sim sim/cfg sim/data sim/log
